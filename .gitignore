@@ -1,2 +1,4 @@
-/db/pgadmin
-/db/postgresql
+/db/pgadmin/
+/db/postgresql/
+
+/www/
