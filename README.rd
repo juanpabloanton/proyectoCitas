@@ -101,10 +101,15 @@ Crear base de datos db_citas
 Una vez creada la base de datos ejecutar los siguientes comandos dentro del contenedor proyectocitas-master_system_machine_1 click derecho ->attach visual studio code donde tenemos las herramientas necesarias 
 para trabajar con laravel y react 
 
+dentro del proyecto ejecutar composer install para que instalen las dependencias y despues 
+
 php artisan migrate
 php artisan db:seed
 
-ejecutara las tablas
+ejecutara las tablas y seed necesarios para acceder a los perfiles de usuario del sistema
+en el proyecto de front hay un archivo docker-compose-dev.yml
+ejecutar docker-compose  -f docker-compose-dev.yml up -d pero afuerda dentro de la carpeta www eso ejecutara la creacion del node_module y va a inicializar el proyecto para su uso
+
 
 
 
