@@ -110,7 +110,31 @@ ejecutara las tablas y seed necesarios para acceder a los perfiles de usuario de
 en el proyecto de front hay un archivo docker-compose-dev.yml
 ejecutar docker-compose  -f docker-compose-dev.yml up -d pero afuerda dentro de la carpeta www eso ejecutara la creacion del node_module y va a inicializar el proyecto para su uso
 
+y dar permisos a la carpeta del backend 
 
+sudo chmod 777 -R back-laravel-citas/
+
+en base dde datos hay 3 tipos de usuarios 
+-Administrador 1  
+-Cliente 2
+-Doctor  1
+
+Usuario Administrador
+user: admin@admin.com
+pass: admin123
+
+Usuario doctor
+user: doctor@hospital.com
+pass: doctor123
+
+Usuario cliente
+user: atorres@gmail.com	
+pass: test123
+
+user: pvega@gmail.com
+pass: cliente123
+
+con esos usuario se pueden hacer pruebas de las funcionalidades del sistema de gestion de citas medicas
 
 
 
