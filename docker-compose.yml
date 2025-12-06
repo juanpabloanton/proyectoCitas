@@ -1,0 +1,67 @@
+#sudo systemctl enable mssql-server
+#sudo systemctl start mssql-server
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16.8
+    container_name: postgres_16.8_desarrollo
+    volumes:
+      - ./db/postgresql/:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "desarrollo"
+      TZ: America/Guayaquil
+    #restart: always
+    ports:
+      - 5432:5432
+  pgadmin:
+    image: dpage/pgadmin4:9.1.0
+    container_name: pgadmin4_9.1.0_desarrollo
+    environment:
+      PGADMIN_DEFAULT_EMAIL: desarrollo@gmai.com
+      PGADMIN_DEFAULT_PASSWORD: "desarrollo"
+    #restart: always
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    volumes:
+      - ./db/pgadmin:/var/lib/pgadmin
+  adminer:
+    image: adminer:5.2.1
+    environment:
+      - ADMINER_DISABLE_CSP=0
+    #restart: always
+    volumes:
+      - ./db/custom-adminer/index.php:/es var/www/html/index.php
+      - ./db/custom-adminer/adminer.php:/var/www/html/adminer.php
+      - ./db/custom-adminer/adminer.css:/var/www/html/adminer.css
+      - ./db/custom-adminer/plugins/:/var/www/html/plugins/
+    ports:
+      - 9091:8080
+
+  system_machine:
+    tty: true
+    image: ambiensa/system_machine
+    volumes:
+      - ./www/:/var/www
+      - ./config/apache2/sites-available/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./config/apache2/ports.conf:/etc/apache2/ports.conf
+    expose:
+      - 92
+      - 93
+      - 94
+      - 91
+    ports:
+      - 91:91
+      - 92:92
+      - 93:93
+      - 94:94
+      - 3000:3000
+
+volumes:
+  sqlserver-data: # Volumen para persistir datos de SQL Server
+  postgresql:
+
+
